@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inserir Nome</title>
+    <link rel="stylesheet" href="css/nome.css">
+    <link rel="shortcut icon" href="img/LogoMain.svg" type="x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <form>
+        <div id="Menu">
+            <img src="img/LogoMain.svg" id="Logo">
+
+            <input type="text" id="inputId" placeholder="Insira o seu Nome" required>
+
+            <a href="espera.html" onclick="return ir(event)" id="button">
+                <img src="img/Seta.svg" alt="Ir para o jogo">
+            </a>
+        </div>
+    </form>
+    <script>
+        // Espera o DOM estar pronto
+        document.addEventListener('DOMContentLoaded', function () {
+            const inputId = document.getElementById('inputId');
+
+            // Evento ao sair do campo (ou você pode usar outro evento como 'change' ou um botão de envio)
+            inputId.addEventListener('change', function () {
+                const nomeId = inputId.value.trim();
+                if (nomeId) {
+                    localStorage.setItem('nomeUsuario', nomeId);
+                    console.log('ID salvo no localStorage:', nomeId);
+                }
+            });
+        });
+
+        
+
+
+
+    </script>
+</body>
+
+</html>

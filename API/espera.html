@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sala de Espera</title>
+    <link rel="stylesheet" href="css/espera.css">
+    <link rel="shortcut icon" href="img/LogoMain.svg" type="x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div id="espera">Espere no lobby</div>
+        <div id="text">PIN DO JOGO</div>
+        <img src="img/LogoEspera.svg">
+        <div class="pin">PINDE8NUM</div>
+    </header>
+
+    <main>
+        <div id="main">
+            <div class="formato black">
+                <img src="img/Flux_Dev_A_set_of_custom_playing_card_icons_in_a_modern_minima_3-Photoroom 1.svg" class="img">
+                <p class="name name1"></p>
+
+            </div>
+            <div class="formato red"> <img src="img/Flux_Dev_A_set_of_custom_playing_card_icons_in_a_modern_minima_3-Photoroom 2.svg" class="img">
+                <p class="name name2">Player_2</p>
+            </div>
+            <div class="formato white"><img src="img/Flux_Dev_A_set_of_custom_playing_card_icons_in_a_modern_minima_3-Photoroom 5.svg" class="img">
+                <p class="name name3">Player_3</p>
+            </div>
+        </div>
+    </main>
+
+    <audio id="musicaFundo" loop>
+        <source src="fortnite-lobby-classic-lobby-music-made-with-Voicemod.mp3" type="audio/mpeg">
+        Seu navegador não suporta áudio.
+    </audio>
+
+    <footer>
+        <img src="img/ampulheta.svg">
+        <p>Aguarde o início do jogo...</p>
+        <a id="redirectLink" href="jogo.html" style="display: none;">Ir para a página</a>
+    </footer>
+</body>
+<script>
+    const nome2 = localStorage.getItem("nomeUsuario");
+
+    // Atualiza os elementos com o nome e sala
+    document.getElementsByClassName("name1")[0].innerText = nome2;
+    document.getElementsByClassName("pin")[0].innerText = localStorage.getItem("nomeSala");
+
+    // Verifica se o usuário já foi adicionado para essa sala
+    const sala = localStorage.getItem("nomeSala");
+    const usuarioAdicionadoKey = `usuarioAdicionado_${sala}`;
+
+    if (!localStorage.getItem(usuarioAdicionadoKey)) {
+        adicionarUsuario(nome2);
+        localStorage.setItem(usuarioAdicionadoKey, "true");
+    }
+
+    setTimeout(function () {
+      // Simula um clique no link após 1 minuto (60000 ms)
+      document.getElementById('redirectLink').click();
+    }, 60000);
+
+    function adicionarUsuario(nomeUsuario) {
+        fetch(`http://10.106.208.17:3000/sala/${sala}/novo_usuario`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ nome: nomeUsuario , "ponto": 0})
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log('Resposta da API:', data);  
+                alert(data.mensagem || 'Usuário adicionado com sucesso!');
+            })
+            .catch(err => {
+                console.error('Erro ao adicionar usuário:', err);
+                alert('Erro ao conectar com o servidor.');
+            });
+    }
+
+    window.onload = () => {
+        playMusic();
+    };
+
+    function playMusic() {
+        const musica = document.getElementById('musicaFundo');
+        musica.play();
+    }
+
+</script>
+</html>

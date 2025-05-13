@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogo de Adivinhação das Bandeiras</title>
+  <link rel="stylesheet" href="css/ranking.css">
+  <link rel="shortcut icon" href="img/LogoMain.svg" type="x-icon">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+  <script>
+    function apagar() {
+      setTimeout(() => {
+        const loading = document.querySelector(".Loading");
+        if (loading) {
+          loading.remove();
+        }
+      }, 1000);
+    }
+
+    async function buscarPontos(nomeSala) {
+      try {
+        const response = await fetch(`http://10.106.208.17:3000/sala/${nomeSala}/ranking`);
+        const data = await response.json();
+
+        // Cria um array para armazenar o ranking
+        const ranking = [];
+
+        // Limpa os campos de exibição (caso estejam com algum conteúdo)
+        for (let i = 1; i <= 3; i++) {
+          const nomeEl = document.getElementById(`name${i}`);
+          const pontosEl = document.getElementById(`pontos${i}`);
+
+          if (nomeEl) nomeEl.innerText = '-';
+          if (pontosEl) pontosEl.innerText = '-';
+        }
+
+        // Verifica se a resposta está OK e preenche o ranking
+        if (response.ok && Array.isArray(data)) {
+          for (let i = 0; i < 3; i++) {
+            const user = data[i];
+            const nomeEl = document.getElementById(`name${i + 1}`);
+            const pontosEl = document.getElementById(`pontos${i + 1}`);
+
+            // Armazena os dados no array ranking
+            ranking.push({
+              nome: user?.usuario || '-',
+              pontos: user?.pontos || 0
+            });
+
+            // Atualiza os campos de exibição
+            if (nomeEl) nomeEl.innerText = user?.usuario || '-';
+            if (pontosEl) pontosEl.innerText = user?.pontos?.toString() || '-';
+          }
+
+          // Exibe o ranking no console
+
+          console.log('Ranking:', ranking[2]["pontos"]);
+
+          document.getElementsByClassName("name1")[0].innerText = ranking[0]["nome"];
+          document.getElementsByClassName("name2")[0].innerText = ranking[1]["nome"];
+          document.getElementsByClassName("name3")[0].innerText = ranking[2]["nome"];
+
+          document.getElementsByClassName("pontos1")[0].innerText = ranking[0]["pontos"];
+          document.getElementsByClassName("pontos2")[0].innerText = ranking[1]["pontos"];
+          document.getElementsByClassName("pontos3")[0].innerText = ranking[2]["pontos"];
+        } else {
+          alert(data.erro || 'Erro ao buscar ranking');
+        }
+      } catch (error) {
+        // Também limpa caso ocorra erro de rede ou no servidor
+        for (let i = 1; i <= 3; i++) {
+          const nomeEl = document.getElementById(`name${i}`);
+          const pontosEl = document.getElementById(`pontos${i}`);
+
+          if (nomeEl) nomeEl.innerText = '-';
+          if (pontosEl) pontosEl.innerText = '-';
+        }
+        alert('Erro de conexão com o servidor');
+      }
+    }
+    buscarPontos(localStorage.getItem("nomeSala"))
+
+  </script>
+
+</head>
+
+<body onload="apagar()">
+
+  <dialog class="Loading" open>
+    <div class="loader">
+      <span class="loader-text">carregando...</span>
+        <span class="load"></span>
+    </div>
+  </dialog>
+
+
+  <header>
+    <img src="img/LogoMain.svg">
+    <a href="index.html" class="BUTTON">Voltar</a>
+  </header>
+
+  <main>
+
+    <div class="podio Lugares">
+      <div class="name name2">-</div>
+      <div class="quadro quadroL">
+        <img src="img/segundo.svg">
+        <p class="pontos pontos2">----</p>
+        <p class="acertos acertos2">----</p>
+      </div>
+    </div>
+
+    <div class="podio">
+      <div class="name name1">----</div>
+      <div class="quadro">
+        <img src="img/primeiro.svg">
+        <p class="pontos pontos1">-----</p>
+        <p class="acertos acertos1">-----</p>
+      </div>
+    </div>
+
+    <div class="podio Lugares">
+      <div class="name name3">-----</div>
+      <div class="quadro quadroL">
+        <img src="img/terceiro.svg">
+        <p class="pontos pontos3">-----</p>
+        <p class="acertos acertos3">-----</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div id="COLUNAUM">
+      <p class="text">© 2025 Quizzy. Todos os direitos reservados.</p>
+    </div>
+
+    <div id="Links">
+      <a href="https://x.com/quizzyonline" class="redirecional X"><img src="img/X.svg" alt="X" class="TWITER"></a>
+      <a href="https://www.instagram.com/quizzyoriginal/" class="redirecional"><img src="img/insta.svg"
+          alt="Instagram"></a>
+    </div>
+
+    <div id="COLUNADOIS">
+      <a href="termos.html" id="termo" class="text">Termos de Uso | Aviso sobre Cookies</a>
+    </div>
+  </footer>
+</body>
+
+</html>

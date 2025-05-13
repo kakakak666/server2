@@ -1,0 +1,158 @@
+body {
+    background-image: url("../img/FundoIndex.svg");
+    display: grid;
+    height: 100vh;
+    justify-items: center;
+    align-items: center;
+    margin: 0;
+    padding: 0px;
+    background-size: cover;
+}
+
+#wp-extension {
+    display:none; 
+}
+
+#SITE {
+    display: grid;
+    justify-items: center;
+    color: white;
+}
+
+#Logo {
+    display: grid;
+    grid-column: span 2;
+    width: 317px;
+}
+
+#Menu {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    border-radius: 5px;
+    background: none;
+    height: auto;
+    width: auto;
+    justify-items: center;
+    column-gap: 25px;
+}
+form {
+    margin-bottom: 100px;
+}
+
+#Menu input {
+    display: grid;
+    text-align: center;
+    grid-column: 1;
+    grid-row: 2;
+    font-family: inter;
+    background-color: white;
+    border-radius: 10px;
+    color: #000000;
+    font-size: 27px;
+    justify-items: center;
+    align-items: center;
+    height: 52px;
+    width: 264px;
+    font-weight: bold;
+    border: none;
+}
+
+#Menu input::placeholder {
+    position: absolute;
+    left: 20px;
+    font-size: 27px;
+}
+
+#button {
+    display: grid;
+    grid-column: 2;
+    grid-row: 2;
+    border-radius: 10px;
+    background-color: #ffffff;
+    font-size: 15px;
+    color: white;
+    height: auto;
+    width: 40px;
+    align-items: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    justify-items: center;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: arial;
+}
+
+#columnOne {
+    display: grid;
+    grid-column: 1;
+}
+
+#Links {
+    display: grid;
+    grid-column: 2;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+#columnThree {
+    display: grid;
+    grid-column: 3;
+}
+
+.text {
+    text-decoration: none;
+    color: #707070;
+    font-weight: bold;
+    font-family: arial;
+    font-size: 11px;
+}
+
+#termo:hover {
+    color: white;
+    animation: 2s;
+}
+
+.redirecional:hover {
+    transform: scale(1.2);
+}
+
+#COLUNAUM {
+    display: grid;
+    grid-column: 1;
+    justify-self: start;
+    padding-left: 70px;
+}
+
+.X {
+    margin-left: 4px;
+}
+
+#COLUNADOIS {
+    display: grid;
+    grid-column: 3;
+    justify-self: end;
+    padding-right: 70px;
+}
+
+@media (max-width: 700px) {
+    #Menu {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        background: none;
+        column-gap: 5px;
+        row-gap: 5px;
+    }
+
+    #Logo {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    #button {
+        grid-row: 3;
+        grid-column: 1;
+    }
+}

@@ -1,0 +1,257 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    display: grid;
+    height: 100vh;
+    width: auto;
+    grid-template-rows: 1.10fr 1fr 0.30fr;
+    background: linear-gradient(190deg, #79041A, #DF0730);
+}
+
+header {
+    display: grid;
+    grid-template-rows: 50px 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+}
+
+header img {
+    display: grid;
+    grid-column: 2;
+    grid-row: 2;
+    margin-left: 122px;
+    width: 210px;
+    align-self: end;
+}
+
+.img {
+    animation: scale 1s ease-in-out infinite;
+}
+
+@keyframes scale {
+    0% ,100%{
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+#espera{
+    background-color: white;
+    color: black;
+    justify-items: center;
+    font-size: 25px;
+    font-family: inter;
+    font-weight: bold;
+    display: grid;
+    align-items: center;
+    grid-column: span 2;
+}
+
+#text{
+    display: grid;
+    font-weight: bold;
+    font-family: inter;
+    justify-items: center;
+    display: grid;
+    width: 150px;
+    height: 40px;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    justify-self: start;
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: end;
+    align-self: end;
+    margin-right: 160px;
+}
+
+.pin{
+    display: grid;
+    height: 158px;
+    width: 664px;
+    font-family: Arial;
+    font-size: 70px;
+    justify-items: center;
+    align-items: center;
+    background-color: white;
+    font-weight: bold;
+    grid-column: span 2;
+    justify-self: center;
+    grid-row: 3;
+}
+
+footer img{
+    width: 24px;
+    display: grid;
+    justify-self: end;
+    margin-right: 5px;
+}
+
+footer p{
+    font-family: inter;
+    font-size: 25px;
+    font-weight: bold;
+    color:white;
+    justify-self: start;
+    display: grid;
+}
+
+footer{
+    display: grid;
+    grid-row: 3;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: auto auto;
+}
+
+main{
+    display: grid;
+    grid-template-columns: 0.20fr 1fr 0.20fr;
+    justify-items: center;
+}
+
+#main {
+    display: grid;
+    grid-column: 2;
+    grid-template-columns: auto auto auto;
+    column-gap: 90px;
+}
+
+.formato{
+    width: 172px;
+    height: 172px;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    font-family: arial;
+    font-size: 16px;
+    border-radius: 100%;
+    border: #D7B609 3px solid;
+}
+
+footer img {
+    animation: rodar 1s infinite;
+}
+
+.black{
+    background-color: black;
+    color: white;
+}
+
+.red{
+    background-color:#90041F ;
+    color: white;
+}
+
+.white{
+    background-color: white;
+}
+
+.formato p{
+    align-self: start;
+    display: grid;
+    font-weight: 550;
+}
+
+.formato img{
+    width: 100px;
+    display: grid;
+    align-self: end;
+}
+
+@media (max-width: 1085px) {
+
+    #main {
+        column-gap: 40px;
+    }
+}
+
+@media (max-width: 944px) {
+    #main {
+        column-gap: 20px;
+    }
+}
+
+@media (max-width: 888px) {
+    main {
+        grid-template-columns: 1fr;
+        justify-self: center;
+    }
+}
+
+@media (max-width: 665px) {
+    header img {
+        display: none;
+    }
+
+    main {
+        grid-template-columns: 1fr;
+    }
+
+    #main {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+
+    header {
+        grid-template-columns: 1fr;
+        grid-template-rows: 50px 50px 1fr;
+    }
+
+    #text {
+        margin: 0;
+        justify-self: center;
+    }
+
+    .pin {
+        width: 100%;
+    }
+
+    body {
+        background: #b30424;
+    }
+
+}
+
+@media (max-width: 585px) {
+    #caixa {
+        width: 100%;
+    }
+
+    .pin {
+        width:100%;
+    }
+
+    header {
+        justify-items: center;
+    }
+
+    #espera {
+        width: 100%;
+    }
+}
+
+@media (max-width: 420px) {
+    .pin {
+        font-size: 45px;
+    }
+
+}
+
+@keyframes rodar {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: rotate(3.142rad);
+    }
+
+    100% {
+        transform: rotate(0);
+    }
+}

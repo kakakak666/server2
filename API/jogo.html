@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogo de Adivinhação das Bandeiras</title>
+  <link rel="stylesheet" href="css/jogo.css">
+  <link rel="shortcut icon" href="img/LogoJogo.svg" type="x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  
+  <script>
+    function atualizarPontosNoServidor() {
+      const nome_usuario = localStorage.getItem("nomeUsuario");
+      const nome_sala = localStorage.getItem("nomeSala");
+      const pontos = localStorage.getItem("pontos")
+      return fetch(`http://10.106.208.23:5000/sala${nome_sala}/usuario/${nome_usuario}/pontos`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ pontos: localStorage.getItem("pontosUsuario") }) // envia os pontos salvos
+      });
+    }
+
+  function exibirNomeUsuario() {
+    const nomeUsuario = localStorage.getItem("nomeUsuario");
+    const nomePlayerElement = document.querySelector(".player");
+    nomePlayerElement.innerText = `@${nomeUsuario}`;  // Exibe o nome do usuário com '@' na tag .player
+  }
+  
+
+  // Chama a função para exibir o nome do usuário assim que a página carregar
+  window.onload = () => {
+    apagar();  // Função que você já tem
+    startTimer();  // Função do timer já existente
+    playMusic();  // Função para música de fundo
+    exibirNomeUsuario();  // Exibe o nome do usuário na tag .player
+  };
+
+
+
+    function apagar() {
+      setTimeout(() => {
+        const loading = document.querySelector(".Loading");
+        if (loading) {
+          loading.remove();
+        }
+      }, 2000);
+    }
+
+    let timer;
+    let minutes = 3;
+    let seconds = 2;
+
+    function updateTimerDisplay() {
+      const minutesStr = minutes < 10 ? `0${minutes}` : minutes;
+      const secondsStr = seconds < 10 ? `0${seconds}` : seconds;
+      document.getElementById("timer").textContent = `${minutesStr}:${secondsStr}`;
+    }
+
+    function startTimer() {
+      timer = setInterval(async function() {
+        if (seconds === 0) {
+          if (minutes === 0) {
+            clearInterval(timer);
+            setTimeout(function () {
+              // Simula um clique no link após 1 minuto (60000 ms)
+              document.getElementById('redirectLink').click();
+            });
+            // Enviar pontos antes de redirecionar
+            await atualizarPontosNoServidor();
+
+            // Redireciona após garantir envio
+            window.open("ranking.html", "_self");
+          } else {
+            minutes--;
+            seconds = 59;
+          }
+        } else {
+          seconds--;
+        }
+        updateTimerDisplay();
+      }, 1000);
+    }
+
+    window.onload = () => {
+      apagar();
+      startTimer();
+      playMusic();
+    };
+
+    function playMusic() {
+      const musica = document.getElementById('musicaFundo');
+      musica.play();
+    }
+  </script>
+</head>
+<body>
+
+  <dialog class="Loading" open>
+    <div class="loader">
+      <span class="loader-text">carregando...</span>
+        <span class="load"></span>
+    </div>
+  </dialog>
+
+  <header>
+    <p id="score">0</p>
+    <div id="name" class="nome">
+      <img src="img/player-icon.svg">
+      <p class="player">-----</p>
+    </div>
+    <div id="timer">05:00</div>
+    <img src="img/LogoJogo.svg" id="LogoJogo">
+  </header>
+
+  <main>
+    <img id="flag" src="" alt="Bandeira" />
+    <div id="BOTOES" class="z-index">
+      <button class="option optionEsquerda" id="Black" onclick="checkAnswer(this)"></button>
+      <button class="option optionDireita" id="Red" onclick="checkAnswer(this)"></button>
+      <button class="option optionEsquerda" id="Red" onclick="checkAnswer(this)"></button>
+      <button class="option optionDireita" id="Black" onclick="checkAnswer(this)"></button>
+    </div>
+    <div class="correct-flags-container" id="BandeirasCertas"></div>
+  </main>
+
+  <audio id="musicaFundo" loop>
+    <source src="spaceship-arcade-shooter-game-background-soundtrack-318508.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio.
+  </audio>
+  <footer>
+    <p>© 2025 Quizzy</p>
+    <a id="redirectLink" href="ranking.html" style="display: none;">Ir para a página</a>
+  </footer>
+
+  <script src="javaScript/script.js"></script>
+</body>
+</html>

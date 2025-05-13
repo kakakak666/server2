@@ -1,0 +1,441 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-image: url("../img/rankingFundo.svg");
+    display: grid;
+    background-size: cover;
+    height: 100vh;
+    grid-template-rows: 0.40fr auto 0.20fr;
+    grid-template-columns: 1.8fr 5fr 1.8fr;
+}
+
+#wp-extension {
+    display: none;
+}
+
+header {
+    display: grid;
+    grid-template-columns: 1fr 105px;
+    grid-column: span 3;
+    justify-items: center;
+    align-items: center;
+}
+
+.BUTTON {
+    display: grid;
+    grid-column: 2;
+    width: 95px;
+    height: 30px;
+    justify-items: center;
+    align-items: center;
+    background-color: #FE0000;
+    border: none;
+    margin-right: 100px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+    margin-bottom: 100px;
+    text-decoration: none;
+    font-family: inter;
+    border-radius: 5%;
+}
+
+.BUTTON:hover {
+    background-color: #c20000;
+}
+
+header img {
+    width: 165px;
+    margin-left: 110px;
+}
+
+/*LOADING*/
+/* From Uiverse.io by alexruix */ 
+.Loading {
+    display: grid;
+    grid-row: span 3;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    background-color: white;
+    border: none;
+    align-items: center;
+    justify-items: center;
+}
+
+.loader {
+    width: 80px;
+    height: 50px;
+    position: relative;
+  }
+  
+  .loader-text {
+    position: absolute;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    color: black;
+    animation: text_713 3.5s ease both infinite;
+    font-size: 18px;
+    letter-spacing: 1px;
+    font-family: arial;
+  }
+  
+  .load {
+    background-color: #c50024;
+    border-radius: 50px;
+    display: block;
+    height: 20px;
+    width: 200px;
+    bottom: 0;
+    position: absolute;
+    transform: translateX(64px);
+    animation: loading_713 2s ease both infinite;
+  }
+  
+  .load::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: #aa001f;
+    border-radius: inherit;
+    animation: loading2_713 2s ease both infinite;
+  }
+  
+  @keyframes text_713 {
+    0% {
+      letter-spacing: 1px;
+      transform: translateX(0px);
+    }
+  
+    40% {
+      letter-spacing: 2px;
+      transform: translateX(26px);
+    }
+  
+    80% {
+      letter-spacing: 1px;
+      transform: translateX(32px);
+    }
+  
+    90% {
+      letter-spacing: 2px;
+      transform: translateX(0px);
+    }
+  
+    100% {
+      letter-spacing: 1px;
+      transform: translateX(0px);
+    }
+  }
+  
+  @keyframes loading_713 {
+    0% {
+      width: 16px;
+      transform: translateX(0px);
+    }
+  
+    40% {
+      width: 100%;
+      transform: translateX(0px);
+    }
+  
+    80% {
+      width: 16px;
+      transform: translateX(64px);
+    }
+  
+    90% {
+      width: 100%;
+      transform: translateX(0px);
+    }
+  
+    100% {
+      width: 16px;
+      transform: translateX(0px);
+    }
+  }
+  
+  @keyframes loading2_713 {
+    0% {
+      transform: translateX(0px);
+      width: 16px;
+    }
+  
+    40% {
+      transform: translateX(0%);
+      width: 80%;
+    }
+  
+    80% {
+      width: 100%;
+      transform: translateX(0px);
+    }
+  
+    90% {
+      width: 80%;
+      transform: translateX(15px);
+    }
+  
+    100% {
+      transform: translateX(0px);
+      width: 16px;
+    }
+  }
+   
+   
+  
+  
+
+main {
+    display: grid;
+    grid-column: 2;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 25px;
+    margin-bottom: 90px;
+    margin-top: 10px;
+}
+
+.podio {
+    display: grid;
+    grid-template-rows: 46px 1fr;
+    row-gap: 18px;
+    justify-items: center;
+}
+
+.name {
+    display: grid;
+    width: 100%;
+    align-items: center;
+    justify-items: center;
+    background-color: #FE0000;
+    height: 100%;
+    color: white;
+    font-size: 30px;
+    font-weight:bolder;
+    font-family: inter;
+    border-radius: 3px;
+}
+
+.quadro {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    justify-items: center;
+    grid-template-rows: auto 20px 1fr;
+    border-radius: 3px; 
+}
+
+.quadro img {
+    margin-top: 30px;
+    display: grid;
+    grid-row: 1;
+    margin-bottom: 20px;
+}
+
+.TWITER {
+    width: 29px;
+}
+
+.podio img {
+    width: 90px;
+    margin-bottom: 20px;
+}
+
+.Lugares {
+    margin-top: 40px;
+}
+
+.points {
+    display: grid;
+    grid-row: 2;
+    font-size: 20px;
+    height: 20px;
+    color: white;
+    justify-self: center;
+    align-items: center;
+    font-weight: bolder;
+    font-family: inter;
+}
+
+.pontos {
+    display: grid;
+    grid-row: 2;
+    height: 20px;
+    font-size: 20px;
+    color: white;
+    justify-self: center;
+    align-items: center;
+    font-weight: bolder;
+    font-family: inter;
+    animation: aparecer 7.5s forwards;
+}
+
+.acertos {
+    display: grid;
+    font-size: 15px;
+    width: 100%;
+    grid-row: 3;
+    font-size: 20px;
+    color: white;
+    margin-top: 10px;
+    justify-items: center;
+    align-items: start;
+    font-family: inter;
+    animation: aparecer 7.5s forwards;
+}
+
+footer {
+    color: white;
+    display: grid;
+    grid-row: 3;
+    grid-column: span 3;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-items: center;
+    font-size: 10px;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+#termo:hover {
+    color: white;
+    animation: 2s;
+}
+
+#columnOne {
+    display: grid;
+    grid-column: 1;
+}
+
+#Links {
+    display: grid;
+    grid-column: 2;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+#columnThree {
+    display: grid;
+    grid-column: 3;
+}
+
+.text {
+    text-decoration: none;
+    color: #707070;
+    font-weight: bold;
+    font-family: inter;
+    font-size: 11px;
+}
+
+#COLUNAUM {
+    display: grid;
+    grid-column: 1;
+    justify-self: start;
+    padding-left: 70px;
+}
+
+.X {
+    margin-left: 3px;
+}
+
+#COLUNADOIS {
+    display: grid;
+    grid-column: 3;
+    justify-self: end;
+    padding-right: 70px;
+}
+
+@media (max-width: 800px) {
+    body {
+        grid-template-rows: 1fr 3fr 0.5fr;
+        grid-template-columns: 1fr ;
+    }
+    main {
+        column-gap: 3px;
+        grid-column: 1;
+        padding: 10px;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+
+
+    .podio {
+        grid-template-columns: 1fr;
+    }
+
+    .points {
+        display: none;
+    }
+
+    .quadroL {
+        background-color: rgb(0, 0, 0);
+    }
+
+    .quadro {
+        grid-template-columns: auto;
+        grid-template-rows: auto 50px 1fr;
+    }
+
+    .quadro img {
+        grid-column: 1;
+    }
+
+    .pontos {
+        grid-column: 1;
+        font-size: 20px;
+        justify-self: center;
+    }
+
+    .acertos {
+        grid-column: 1;
+    }
+
+    header button {
+        margin-right: 30px;
+        margin-top: 30px;
+    }
+}
+
+@keyframes aparecer {
+    0% {
+        opacity: 0;
+    }
+
+    33% {
+        opacity: 0;
+    }
+
+    66% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.name1 {
+    opacity: 0;
+    animation: aparecer 6.5s forwards;
+}
+
+.name2 {
+    opacity: 0;
+    animation: aparecer 4.5s forwards;
+}
+
+.name3 {
+    opacity: 0;
+    animation: aparecer 2.5s forwards;
+}
+
+.redirecional:hover {
+    transform: scale(1.2);
+}

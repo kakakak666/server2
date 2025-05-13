@@ -1,0 +1,144 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    display: grid;
+    height: auto;
+    grid-template-rows: auto auto 290px;
+}
+
+header {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    justify-items: center;
+    align-items: center;
+    background-color: black;
+}
+
+header img {
+    display: grid;
+    grid-column:  2;
+    width: 210px;
+    margin-right: 400px;
+}
+
+
+
+header button {
+    background-color: black;
+    border: white solid 1.90px;
+    border-radius: 15px;
+    height: 59px;
+    width: 180px;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+header button:hover {
+    border-color: rgb(202, 202, 202);
+}
+
+main {
+    display: grid;
+    height: auto;
+    width: auto;
+    padding-left: 70px;
+    padding-top: 90px;
+}
+
+main img {
+    margin-left: 20px;
+    width: 41px;
+    margin-right: 5px;
+}
+
+h1 {
+    font-size: 28px;
+    font-family: inter;
+}
+
+.titulo1 {
+    padding-bottom: 7px;
+}
+
+p {
+    font-family: inter;
+}
+
+#image {
+    display: flex;
+    align-items: center;
+}
+
+.para {
+    margin-left: 70px;
+}
+.titulo {
+    padding-bottom: 12px;
+}
+
+@media (max-width: 880px) {
+    #image img {
+        margin: 0;
+    }
+
+    .para {
+        margin-left: 6px;
+    }
+
+    main {
+        padding-left: 20px;
+    }
+}
+
+footer {
+    margin-top: 120px;
+    justify-items: end;
+    align-items: end;
+    padding-right: 60px;
+    padding-bottom: 40px;
+}
+
+footer button {
+    display: grid;
+    background-color: #546CE9;
+    border-radius: 40px;
+    border: none;
+    width: 202px;
+    height: 68px;
+    color: white;
+    font-family: Arial;
+    font-size: 20px;
+    justify-items: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+@media (max-width: 1085px) {
+    header {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 100px;
+    }
+
+    header img {
+        grid-column: 1;
+        margin: 0;
+        justify-self: center;
+    }
+
+    #Voltar {
+        grid-row: 2;
+        justify-self: center;
+    }
+}
+
+footer p {
+    width: 400px;
+}
+
+footer button:hover {
+    border: white solid 2px;
+}

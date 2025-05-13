@@ -1,0 +1,423 @@
+* {
+    padding: 0;
+    margin: 0;
+    
+}
+
+#wp-extension {
+    display: none;
+}
+
+body {
+    display: grid;
+    height: 100vh;
+    grid-template-rows: 0.30fr auto 0.40fr;
+}
+
+.Loading {
+    display: grid;
+    grid-row: span 3;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    background-color: white;
+    border: none;
+    align-items: center;
+    justify-items: center;
+}
+
+footer p {
+    display: grid;
+}
+
+/*LOADING*/
+/* From Uiverse.io by alexruix */ 
+.loader {
+    width: 80px;
+    height: 50px;
+    position: relative;
+  }
+  
+  .loader-text {
+    position: absolute;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    color: black;
+    animation: text_713 3.5s ease both infinite;
+    font-size: 18px;
+    letter-spacing: 1px;
+    font-family: arial;
+  }
+  
+  .load {
+    background-color: #c50024;
+    border-radius: 50px;
+    display: block;
+    height: 20px;
+    width: 200px;
+    bottom: 0;
+    position: absolute;
+    transform: translateX(64px);
+    animation: loading_713 2s ease both infinite;
+  }
+  
+  .load::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: #aa001f;
+    border-radius: inherit;
+    animation: loading2_713 2s ease both infinite;
+  }
+  
+  @keyframes text_713 {
+    0% {
+      letter-spacing: 1px;
+      transform: translateX(0px);
+    }
+  
+    40% {
+      letter-spacing: 2px;
+      transform: translateX(26px);
+    }
+  
+    80% {
+      letter-spacing: 1px;
+      transform: translateX(32px);
+    }
+  
+    90% {
+      letter-spacing: 2px;
+      transform: translateX(0px);
+    }
+  
+    100% {
+      letter-spacing: 1px;
+      transform: translateX(0px);
+    }
+  }
+  
+  @keyframes loading_713 {
+    0% {
+      width: 16px;
+      transform: translateX(0px);
+    }
+  
+    40% {
+      width: 100%;
+      transform: translateX(0px);
+    }
+  
+    80% {
+      width: 16px;
+      transform: translateX(64px);
+    }
+  
+    90% {
+      width: 100%;
+      transform: translateX(0px);
+    }
+  
+    100% {
+      width: 16px;
+      transform: translateX(0px);
+    }
+  }
+  
+  @keyframes loading2_713 {
+    0% {
+      transform: translateX(0px);
+      width: 16px;
+    }
+  
+    40% {
+      transform: translateX(0%);
+      width: 80%;
+    }
+  
+    80% {
+      width: 100%;
+      transform: translateX(0px);
+    }
+  
+    90% {
+      width: 80%;
+      transform: translateX(15px);
+    }
+  
+    100% {
+      transform: translateX(0px);
+      width: 16px;
+    }
+  }
+   
+   
+  
+  
+header {
+    display: grid;
+    grid-row: 1;
+    background: linear-gradient(150deg, #FF002F, #79041A);
+    align-items: center;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding-right: 90px;
+    height: 100%;
+}
+
+#LogoJogo {
+    display: grid;
+    grid-column: 2;
+    grid-row: 1;
+    width: 128px;
+    margin-left: 90px;
+    filter: drop-shadow(0 0 0.40rem black);
+    animation: balanco 900ms infinite ease-in-out;
+}
+
+#timer {
+    display: grid;
+    grid-column: 3;
+    background-color: black;
+    color: white;
+    font-size: 18px;
+    border-radius: 100%;
+    height: 77px;
+    width: 86px;
+    justify-items: center;
+    align-items: center;
+    font-weight: bold;
+    justify-self: end;
+    font-family: inter;
+}
+
+.z-index {
+    z-index: 2;
+}
+
+#score {
+    display: none;
+}
+
+main {
+    display: grid;
+    grid-row: 2;
+    grid-template-columns: 1.2fr 2.23fr 1.2fr;
+    grid-template-rows: 1fr 0.80fr;
+    padding-top: 10px;
+    
+}
+
+#BOTOES {
+    display: grid;
+    grid-column: 2;
+    grid-row: 2;
+    grid-template-columns: 0.50fr 0.50fr;
+    grid-template-rows: 0.50fr 0.50fr;
+    column-gap: 10px;
+    gap: 15px;
+}
+
+.option {
+    display: grid;
+    cursor: pointer;
+    align-items: center;
+    justify-items: center;
+    width: 1fr;
+    height: 1fr;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    filter: drop-shadow(0 0 0.10rem black);
+}
+
+#name {
+    display: grid;
+    background-color: black;
+    width: 211px;
+    height: 54px;
+    border-radius: 30px;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: auto 1fr;
+}
+
+#name p {
+    display: grid;
+    color: white;
+    font-family: inter;
+    font-size: 18px;
+    justify-self: start;
+    padding-left: 20px;
+}
+
+#name img {
+    width: 22px;
+    margin-left: 20px;
+}
+
+#flag {
+    display: grid;
+    width: 347px;
+    height: 225px;
+    grid-column: 2;
+    grid-row: 1;
+    filter: drop-shadow(0 0 10px #646464);
+    align-self: center;
+    justify-self: center;
+    border-radius: 20px;
+}
+
+#BandeirasCertas {
+    display: none;
+}
+
+#Black {
+    background-color: black;
+}
+
+#Red {
+    background-color: #FF002F;
+}
+
+.option:hover {
+    opacity: 0.75;
+}
+
+footer {
+    display: grid;
+    grid-row: 3;
+    align-items: end;
+    margin-left: 60px;
+    font-family: Inter;
+    font-weight: 300;
+    justify-items: start;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 885px) {
+    body {
+        grid-template-rows: 120px 1fr 0.25fr;
+        width: 100vw;
+    }
+    #flag {
+        width: 287px;
+        height: 165px;
+    }
+
+    header {
+        padding-right: 30px;
+        
+    }
+
+    main {
+        padding-top: 30px;
+        grid-template-rows: 1fr 1fr;
+        grid-row: 2;
+    }
+
+    #BOTOES {
+        grid-column: span 3;
+        grid-template-columns: 0.90fr 0.90fr;
+        grid-template-rows: 0.90fr 0.90fr;
+    }
+
+    footer {
+        margin-bottom: 0;
+    }
+
+    #LogoJogo {
+        width: 100px;
+    }
+}
+
+@media (max-width: 540px) {
+    #LogoJogo {
+        display: none;
+    }
+
+    header {
+        grid-template-columns: auto auto;
+    }
+}
+
+@media (max-width: 666px) {
+    #LogoJogo {
+        display: none !important;
+    }
+}
+
+.Errou {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: #fa3134;
+    animation: ir 0.50s ease-in-out forwards, voltar 0.50s 0.50s ease-out forwards;
+    z-index: 5;
+    opacity: 1;
+}
+
+.Acertou {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: #3eaa00;
+    animation: ir 0.50s ease-in-out forwards, voltar 0.50s 0.50s ease-out forwards;
+    z-index: 3;
+    opacity: 1;
+}
+
+@keyframes ir {
+    from {
+        height: 0;
+    }
+    to {
+        height: 100%;
+    }
+}
+
+@keyframes voltar {
+    from {
+        height: 100%;
+    }
+    to {
+        height: 0;
+    }
+}
+
+@keyframes balanco {
+    0% {
+        transform: rotate(0);
+    }
+    25% {
+        transform: rotate(-0.1rad);
+    }
+    50% {
+        transform: rotate(0);
+    }
+    75% {
+        transform: rotate(0.1rad);
+    }
+    100% {
+        transform: rotate(0);
+    }
+}
+
+#LogoJogo {
+    display: grid;
+    grid-column: 2;
+    grid-row: 1;
+    width: 128px;
+    margin-left: 90px;
+    filter: drop-shadow(0 0 0.40rem black);
+    animation: balanco 900ms infinite ease-in-out;
+}

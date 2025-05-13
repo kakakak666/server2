@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Ranking da Sala</title>
+</head>
+<body>
+  <h1>Visualizar Ranking da Sala</h1>
+
+  <label for="sala">Nome da sala:</label>
+  <input type="text" id="sala" placeholder="Ex: sala_20250505123000">
+  <button onclick="buscarRanking()">Buscar Ranking</button>
+
+  <h2>Pódio</h2>
+  <ol>
+    <li>
+      <strong id="name1">-</strong> - <span id="pontos1">-</span> pontos
+    </li>
+    <li>
+      <strong id="name2">-</strong> - <span id="pontos2">-</span> pontos
+    </li>
+    <li>
+      <strong id="name3">-</strong> - <span id="pontos3">-</span> pontos
+    </li>
+  </ol>
+
+  <script>
+    async function buscarRanking() {
+      const nomeSala = document.getElementById('sala').value;
+
+      // Zera os campos antes de buscar
+      for (let i = 1; i <= 3; i++) {
+        document.getElementById(`name${i}`).textContent = '-';
+        document.getElementById(`pontos${i}`).textContent = '-';
+      }
+
+      try {
+        const response = await fetch(`http://localhost:5000/sala/${nomeSala}/ranking`);
+        const data = await response.json();
+
+        if (response.ok) {
+          for (let i = 0; i < Math.min(3, data.length); i++) {
+            document.getElementById(`name${i+1}`).textContent = data[i].usuario;
+            document.getElementById(`pontos${i+1}`).textContent = data[i].pontos;
+          }
+        } else {
+          alert(data.erro || 'Erro ao buscar ranking');
+        }
+      } catch (error) {
+        alert('Erro de conexão com o servidor');
+      }
+    }
+  </script>
+</body>
+</html>

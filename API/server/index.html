@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Teste de Servidor Flask</title>
+</head>
+<body>
+  <h1>Servidor de Salas</h1>
+
+  <section>
+    <h2>Criar Sala</h2>
+    <button id="criarSalaBtn">Criar Sala</button>
+    <p id="novaSalaInfo"></p>
+  </section>
+
+  <section>
+    <h2>Entrar em Sala</h2>
+    <input type="text" id="usuarioNomeInput" placeholder="Seu nome">
+    <div id="salasList"></div> <!-- Lista de Salas -->
+    <p id="usuarioStatus"></p>
+  </section>
+
+  <section>
+    <h2>Pontuação</h2>
+    <button id="verPontosBtn">Ver Pontos</button>
+    <input type="number" id="pontosInput" placeholder="Nova Pontuação">
+    <button id="atualizarPontosBtn">Atualizar Pontos</button>
+    <p id="pontuacaoStatus"></p>
+  </section>
+
+  <script>
+    let salaAtual = '';
+    let usuarioAtual = '';
+
+    // Função para listar as salas
+    function listarSalas() {
+      fetch('http://localhost:5000/salas')
+        .then(res => res.json())
+        .then(salas => {
+          const salasList = document.getElementById('salasList');
+          salasList.innerHTML = ''; // Limpar lista antes de atualizar
+          salas.forEach(sala => {
+            const salaBtn = document.createElement('button');
+            salaBtn.innerText = sala;
+            salaBtn.onclick = () => entrarNaSala(sala);
+            salasList.appendChild(salaBtn);
+          });
+        });
+    }
+
+    // Chama a função listarSalas quando a página carregar
+    window.onload = listarSalas;
+
+    // Função para entrar em uma sala
+    function entrarNaSala(nomeSala) {
+      const usuario = document.getElementById('usuarioNomeInput').value;
+
+      if (!usuario) {
+        alert('Informe seu nome para entrar na sala.');
+        return;
+      }
+
+      fetch(`http://localhost:5000/sala/${nomeSala}/novo_usuario`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ nome: usuario, pontos: 0 })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.mensagem) {
+          usuarioAtual = usuario;
+          salaAtual = nomeSala;
+          document.getElementById('usuarioStatus').innerText = data.mensagem;
+
+          // Armazenando os dados no localStorage
+          localStorage.setItem('nomeSala', nomeSala);
+          localStorage.setItem('nomeUsuario', usuario);
+
+          
+        }
+      });
+    }
+
+    // Função para ver pontos
+    document.getElementById('verPontosBtn').onclick = () => {
+      // Recuperando dados do localStorage
+      const nomeSala = localStorage.getItem('nomeSala');
+      const nomeUsuario = localStorage.getItem('nomeUsuario');
+
+      if (!nomeSala || !nomeUsuario) {
+        alert('Você deve estar em uma sala e com um usuário ativo.');
+        return;
+      }
+
+      fetch(`http://localhost:5000/sala/${nomeSala}/usuario/${nomeUsuario}/pontos`)
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById('pontuacaoStatus').innerText = `Pontos de ${data.usuario}: ${data.pontos}`;
+        });
+    };
+
+    // Função para atualizar pontos
+    document.getElementById('atualizarPontosBtn').onclick = () => {
+      const pontos = parseInt(document.getElementById('pontosInput').value);
+      if (isNaN(pontos)) {
+        alert('Digite um número válido de pontos.');
+        return;
+      }
+
+      // Recuperando dados do localStorage
+      const nomeSala = localStorage.getItem('nomeSala');
+      const nomeUsuario = localStorage.getItem('nomeUsuario');
+
+      if (!nomeSala || !nomeUsuario) {
+        alert('Você deve estar em uma sala e com um usuário ativo.');
+        return;
+      }
+
+      fetch(`http://localhost:5000/sala/${nomeSala}/usuario/${nomeUsuario}/pontos`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ pontos })
+      })
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('pontuacaoStatus').innerText = data.mensagem || data.erro;
+      });
+    };
+  </script>
+</body>
+</html>
